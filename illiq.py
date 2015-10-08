@@ -10,7 +10,7 @@ import os
 setting = {
     'database' : 'data/cnhistory.db',
     'limit' : 25,
-    'stockfile' : 'data/000300.csv'
+    'stockfile' : None
     }
 
 
@@ -127,7 +127,7 @@ def Output(stocks, target_date, cu, islowmc, tradedays):
         if len(rows)==1: # no record for the day after calc day, get the price for the calc day
             price = rows[0][0]
             trade_day = rows[0][1]
-            prev_day = tradedays[len(tradedays)-2][0]
+            prev_day = tradedays[1][0]
         else:            # get the price for the day after calc day
             price = rows[1][0]
             trade_day = rows[1][1]
@@ -139,9 +139,9 @@ def Output(stocks, target_date, cu, islowmc, tradedays):
         row = cu.fetchone()
         prev_price = row[0]
 
-        if price/prev_price-1>0.0975: #hit limit
-            print('hit growth limit on buy day, skip '+stock[0])
-            continue
+        #if price/prev_price-1>0.0975: #hit limit
+        #    print('hit growth limit on buy day, skip '+stock[0])
+        #    continue
 
         id = YahooToGoogle(stock[0])
         try:
