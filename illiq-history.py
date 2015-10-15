@@ -11,10 +11,9 @@ setting = {
     'database' : 'data/cnhistory.db',
     'limit' : 25,
     'cycle' : 1 , #month
-    'stockfile' : 'data/cn.csv',
     'resultfile' : 'data/portfolio.csv',
     'pbmax' : 100,
-    'mclimit' : False
+    'mclimit' : True
 
 }
 
