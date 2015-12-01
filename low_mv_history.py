@@ -9,7 +9,7 @@ import os
 # this is for cn stock
 setting = {
     'database' : 'data/cnhistory.db',
-    'limit' : 10,
+    'limit' : 15,
     'cycle' : 1 , #month
     'resultfile' : 'data/portfolio.csv',
     'pbmax' : 100,
@@ -103,11 +103,14 @@ def illiq(calcday, cu):
       
     start = CalcStartDay(calc_day, cu)
 
-    if setting['mclimit']:
-        mclimit = GetMarketValueLimit(cu,calc_day)
-        sql = "select id,'" + calc_day + "', avg(illiq) from quotation where currcapital_a<=" +str(mclimit)+" and turnover>0 and date>='"+start+"' and date<='"+calc_day+"' group by id having count(*)==5 order by avg(illiq) desc limit "+str(setting['limit'])
-    else:
-        sql = "select id,'" + calc_day + "', avg(illiq) from quotation where turnover>0 and date>='"+start+"' and date<='"+calc_day+"' group by id having count(*)==5 order by avg(illiq) desc limit "+str(setting['limit'])
+    # if setting['mclimit']:
+    #     mclimit = GetMarketValueLimit(cu,calc_day)
+    #     sql = "select id,'" + calc_day + "', avg(illiq) from quotation where currcapital_a<=" +str(mclimit)+" and turnover>0 and date>='"+start+"' and date<='"+calc_day+"' group by id having count(*)==5 order by avg(illiq) desc limit "+str(setting['limit'])
+    # else:
+    #     sql = "select id,'" + calc_day + "', avg(illiq) from quotation where turnover>0 and date>='"+start+"' and date<='"+calc_day+"' group by id having count(*)==5 order by avg(illiq) desc limit "+str(setting['limit'])
+    sql = 'select id,"'+calc_day+'", illiq from quotation where turnover>0 and date="'+calc_day+'" order by currcapital_a asc limit '+str(setting['limit'])
+    
+
     cu.execute(sql)
     stocks = cu.fetchall()
 
