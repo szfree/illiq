@@ -9,11 +9,11 @@ import os
 # this is for cn stock
 setting = {
     'database' : 'data/cnhistory.db',
-    'limit' : 10,
+    'limit' : 25,
     'cycle' : 1 , #month
     'resultfile' : 'data/portfolio.csv',
     'pbmax' : 100,
-    'mclimit' : True
+    'mclimit' : False
 
 }
 

@@ -8,7 +8,7 @@ import os
 
 setting = {
     'database' : 'data/cnhistory.db',
-    'folder' : 'csv'
+    'folder' : '1512pb'
 
 }
 
